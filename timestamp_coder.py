@@ -21,7 +21,7 @@ class ZlibTimestampCoder:
     prev = 0
     deltas = []
     for ts in self.timestamps:
-      deltas.append(ts - prev - 1)
+      deltas.append(ts - prev)
       prev = ts
     bytes = ':'.join('%0x' % delta for delta in deltas)
     return zlib.compress(bytes, 9)
@@ -32,7 +32,7 @@ class ZlibTimestampCoder:
     prev = 0
     deltas = [int(s, 16) for s in bytes.split(':')]
     for delta in deltas:
-      prev = delta + prev + 1
+      prev = delta + prev
       self.timestamps.append(prev)
 
 def generate_timestamps(num, duration_ms=7 * 86400 * 1000):
