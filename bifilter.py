@@ -80,7 +80,7 @@ class Bifilter:
     branch_states = np.unpackbits(branch_bits)
     leaves_states = np.unpackbits(leaves_bits)
 
-    # Build the filter.
+    # Build the filter
     bifilter = Bifilter()
     branch_sum, leaves_sum = 0, 0
     for i in xrange(len(header)):
